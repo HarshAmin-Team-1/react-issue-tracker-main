@@ -66,7 +66,7 @@ const IncidentDetails = () => {
             <Tooltip
               style={{ marginRight: "26rem" }}
               title="Back"
-              onClick={() => history.goBack()}
+              onClick={() => history.push("/")}
             >
               <Link to="#">
                 <ArrowBackIosIcon />
@@ -110,7 +110,11 @@ const IncidentDetails = () => {
             <h2>{incident?.category?.title}</h2>
 
             <p style={{ marginTop: "1em", marginBottom: 10 }}>
-              {moment(incident?.createdAt?._seconds).format("ddd, MMM DD YYYY")}
+              {moment(
+                incident?.createdAt?.seconds
+                  ? incident?.createdAt?.seconds * 1000
+                  : incident?.createdAt?._seconds
+              ).format("ddd, MMM DD YYYY")}
             </p>
 
             <h4>
@@ -135,9 +139,11 @@ const IncidentDetails = () => {
                       >
                         <p>
                           <b>
-                            {moment(history.date?._seconds).format(
-                              "ddd, HH:MM, DD MMM"
-                            )}
+                            {moment(
+                              history.date?.seconds
+                                ? history.date?.seconds * 1000
+                                : history.date?._seconds
+                            ).format("ddd, HH:MM, DD MMM")}
                           </b>{" "}
                           :- {history.description}
                         </p>

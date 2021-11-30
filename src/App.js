@@ -17,6 +17,7 @@ function App() {
     (err) => console.warn(err),
     () => {
       setLoading(false);
+      window.location.reload();
     }
   );
 
